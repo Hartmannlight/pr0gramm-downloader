@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Pr0gramm Media Downloader",
+  "version": "1.1",
+  "description": "Adds a download button to Pr0gramm and saves media files directly.",
+  "permissions": ["downloads", "activeTab"],
+  "host_permissions": ["*://*.pr0gramm.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.pr0gramm.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon128.png"
+  }
+}
