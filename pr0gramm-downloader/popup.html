@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pr0 helper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html, body { margin: 0; padding: 0; font-family: system-ui, Arial, sans-serif; }
+      body { background: #1e1e1e; color: #eaeaea; width: 360px; }
+      header { padding: 10px 12px; font-weight: 600; border-bottom: 1px solid #333; }
+      section { padding: 10px 12px; border-bottom: 1px solid #333; }
+      h2 { margin: 0 0 8px 0; font-size: 13px; color: #cfcfcf; display:flex; align-items:center; gap:6px; }
+      button, input[type="text"], input[type="checkbox"] { font-size: 12px; padding: 6px 8px; border: 1px solid #444; background: #2a2a2a; color: #eaeaea; border-radius: 3px; }
+      button { cursor: pointer; }
+      button:hover { background: #333; }
+      .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .kw-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+      .kw-chip { background: #2d3a3f; padding: 4px 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+      .kw-chip button { padding: 2px 6px; border-radius: 999px; border: 1px solid #666; }
+      .hint { font-size: 11px; color: #9aa0a6; margin-top: 6px; }
+      .file { display: none; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .badge { font-size: 11px; color: #9aa0a6; }
+      .grid { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
+      label { font-size: 12px; color: #cfcfcf; display:flex; align-items:center; gap:6px; }
+      .input-wide { width: 100%; }
+      .info { display:inline-block; width:14px; height:14px; border-radius:50%; background:#444; color:#ddd; text-align:center; line-height:14px; font-size:11px; cursor:help; }
+      #toast { position: fixed; left: 12px; right: 12px; bottom: 12px; background:#2a2a2a; border:1px solid #444; color:#eaeaea; padding:8px 10px; border-radius:4px; font-size:12px; opacity:0; transition: opacity 150ms ease-in; pointer-events:none; }
+      #toast.show { opacity: 1; }
+    </style>
+  </head>
+  <body>
+    <header>Pr0 helper</header>
+
+    <section>
+      <h2>Backup &amp; Restore <span class="info" title="Export/Import all local and sync settings as JSON.">i</span></h2>
+      <div class="row">
+        <button id="btn-export" title="Opens JSON in a new tab">Export JSON (new tab)</button>
+        <button id="btn-import" title="Load a previously exported JSON">Import JSON…</button>
+        <input id="file-import" class="file" type="file" accept="application/json">
+      </div>
+      <div class="hint">Includes <span class="mono">storage.local</span> and <span class="mono">storage.sync</span> if available.</div>
+    </section>
+
+    <section>
+      <h2>Download settings <span class="info" title="Relative to the browser's default download folder. Absolute paths are not allowed.">i</span></h2>
+      <div class="grid">
+        <label for="dl-subdir">Subfolder <span class="info" title="Optional. Example Windows: Pr0gramm, Linux: pr0gramm.">i</span></label>
+        <input id="dl-subdir" class="input-wide" type="text" placeholder="e.g. Pr0gramm">
+        <label for="dl-template">Filename template <span class="info" title="Placeholders: {id}, {ext}. Example: {id}{ext} → 6791642.mp4">i</span></label>
+        <input id="dl-template" class="input-wide" type="text" placeholder="{id}{ext}">
+        <label for="dl-saveas">Show “Save as…” <span class="info" title="Ask for a location on every download.">i</span></label>
+        <input id="dl-saveas" type="checkbox">
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <button id="btn-save-settings" title="Save settings">Save</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Warn keywords <span class="info" title="Case-insensitive, diacritics removed, substring match against post tags. Defaults provided.">i</span></h2>
+      <div class="row">
+        <input id="kw-input" type="text" placeholder="Add keyword…">
+        <button id="kw-add">Add</button>
+        <span id="kw-where" class="badge"></span>
+      </div>
+      <div id="kw-list" class="kw-list"></div>
+      <div class="hint">If matched, a red banner lists the triggered keywords.</div>
+    </section>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,21 +1,27 @@
 {
   "manifest_version": 3,
-  "name": "Pr0gramm Media Downloader",
-  "version": "1.1",
-  "description": "Adds a download button to Pr0gramm and saves media files directly.",
-  "permissions": ["downloads", "activeTab"],
-  "host_permissions": ["*://*.pr0gramm.com/*"],
+  "name": "Pr0 helper",
+  "version": "2.0.0",
+  "description": "Custom Download/Hyperlink, share history, keyword warnings with defaults, backup/restore, popup UI, and download settings.",
+  "permissions": ["storage", "downloads", "activeTab", "clipboardWrite"],
+  "host_permissions": ["*://pr0gramm.com/*", "*://*.pr0gramm.com/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
   "content_scripts": [
     {
-      "matches": ["*://*.pr0gramm.com/*"],
+      "matches": ["*://pr0gramm.com/*", "*://*.pr0gramm.com/*"],
       "js": ["content.js"],
       "run_at": "document_end"
     }
   ],
-  "background": {
-    "service_worker": "background.js"
+  "action": {
+    "default_title": "Pr0 helper",
+    "default_popup": "popup.html"
   },
   "icons": {
     "128": "icon128.png"
-  }
+  },
+  "author": "Natsu",
+  "homepage_url": "https://github.com/Hartmannlight/pr0gramm-downloader",
+  "offline_enabled": true,
+  "minimum_chrome_version": "115"
 }

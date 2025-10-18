@@ -1,10 +1,13 @@
-# Pr0gramm Media Downloader 🚀
+# Pr0gramm Download Button 🚀
 
-Diese Erweiterung fügt einen Download-Button zu Pr0gramm hinzu, mit dem du Bilder und Videos direkt speichern kannst.  
+Erweiterung für Pr0gramm zum einfacheren Herunterladen und Teilen von einzelnen Posts.
 
-- Ein Klick starten den Download
-- Dateien enthalten die ID des Posts
-- Speichert alle Dateien in den Ordner „Pr0gramm“ innerhalb eures standard Download Ordners
+- **Download:** Speichert Bilder und Videos direkt mit __einem Klick__  
+- **Hyperlink:** Kopiert Discord-/Markdown-kompatiblen Link (`[source](https://...)`)  
+- Entfernt native „Teilen“/„Herunterladen“-Buttons  
+- **Warnsystem:** Zeigt Warnung beim Download von Posts mit bestimmten Tags ("fake news" und so)  
+- **Logging:** Führt bei dir lokal eine Liste, welche Posts du schon geteilt hast
+
 
 ## 🔧 Installation  
 1. Lade das Repository herunter und entpacke es.  
